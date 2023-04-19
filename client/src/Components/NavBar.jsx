@@ -5,30 +5,36 @@ import { useLocation } from "react-router-dom";
 
 const NavBar = () => {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-4 my-5 justify-center">
-            <div className="mx-auto md:mx-0">
-                <img
-                    src="/twitterlogo.png"
-                    alt="Twitter Logo"
-                    width={"40px"}
-                    className="ml-8"
-                />
-            </div>
-            <div className="col-span-2 md:border-x-2 md:border-slate-200 md:px-6 my-6 md:my-0">
-                <div className="flex justify-between items-center">
+        <div className="d-flex w-100 p-3 justify-content-center ">
+
+            {/* <div className=""> */}
+
+                <div className="">
                     <h2 className="font-bold text-2xl">
+                        <StarBorderPurple500Icon />
                         {
                             "Explore RideEase: The Convenient Cab Booking App"
                         }
+                        <StarBorderPurple500Icon />
                     </h2>
-                    <StarBorderPurple500Icon />
                 </div>
-            </div>
+            
+            {/* </div> */}
+    {/* 
+                <div className="">
+                            <img
+                                src="https://as2.ftcdn.net/v2/jpg/02/72/89/23/500_F_272892343_x1hDsOtr6SOvi8i3ik6wHBSko5bIh9FU.jpg"
+                                alt="Twitter Logo"
+                                width={"100%"}
+                                height={"100%"}
+                                className="ml-8"
+                            />
+                        </div> */}
 
-            <div className="px-0 md:px-6 mx-2">
-                <SearchIcon className="absolute m-2" />
-                <input type="text" className="bg-blue-100 rounded-full py-2 px-8" />
-            </div>
+            {/* <div className="">
+                     <SearchIcon className="absolute m-2" />
+                     <input type="text" className="bg-blue-100 rounded-full py-2 px-8" />
+                 </div> */}
         </div>
     );
 };

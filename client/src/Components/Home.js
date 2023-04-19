@@ -1,26 +1,30 @@
-
+import './Home.css'
+import {useNavigate} from 'react-router-dom'
 const Home = () => {
+    const navigate = useNavigate()
     return (
-        <form className="bg-gray-200 flex flex-col py-12 px-8 rounded-lg w-8/12 md:w-6/12 mx-auto gap-10" >
+        <div className="home">
+            <form className="bg-light d-flex flex-column justify-content-between p-2 w-50 mx-auto">
+                <h2 className="p-2">
+                    Enter Email address to get started
+                </h2>
+                <input
+                    className="p-2"
+                    placeholder="Email Address"
+                    name="email"
+                    type="text"
+                    required
+                />
 
-            <h2 className="text-3xl font-bold text-center">
-                {"Enter Email Address to get Started"}
-            </h2>
-            <input
-                className="text-xl py-2 rounded-full px-4"
-                placeholder="Email Address"
-                name="email"
-                type="text"
-                required
-            />
-
-            <button
-                type="submit"
-                className="text-xl py-2 rounded-full px-4 bg-blue-500 text-white"
-            >
-                {"Get Started"}
-            </button>
-        </form>
+                <button
+                    type="submit"
+                    className="p-2 m-5"
+                    onClick={()=>{navigate('/navigatePath')}}
+                >
+                    {"Get Started"}
+                </button>
+            </form>
+        </div>
     );
 };
 

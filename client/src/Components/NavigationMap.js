@@ -10,7 +10,7 @@ const center = {
   lng: 76.6597778
 }
 
-export const NavigationMap = () => {
+const NavigationMap = () => {
   const [map, setMap] = useState( /** @type google.maps.Map */(null))
   const [source, setSource] = useState('')
   const [destination, setDestination] = useState('')
@@ -25,7 +25,7 @@ export const NavigationMap = () => {
     componentRestrictions: { country: "ng" },
     fields: ["address_components", "geometry", "icon", "name"],
     types: ["establishment"]
-   };
+  };
 
   // useEffect(() => {
   //   autoCompleteRef.current = new window.google.maps.places.Autocomplete(
@@ -74,6 +74,8 @@ export const NavigationMap = () => {
 
     setdistance(result.routes[0].legs[0].distance.text)
     setduration(result.routes[0].legs[0].duration.text)
+    console.log('done')
+    console.log(result.routes[0].legs[0].duration.label)
   }
 
   const clearRoute = async () => {
@@ -90,12 +92,10 @@ export const NavigationMap = () => {
   }
   if (!isLoaded) return <div>Loading...</div>
   return (
-    <div className="grid ">
-      Book a Cab
-      <div style={{
-        height: '80vh',
-        width: '80vw'
-      }}>
+    <div className="d-flex " style={{height : '100vh'}}>
+    {/* // "d-flex flex-row w-100 border border-primary"> */}
+
+      <div className="col-10 ">
         {/* <GoogleMap center={center}  /> */}
         <GoogleMap
           mapContainerClassName="map-container"
@@ -117,27 +117,36 @@ export const NavigationMap = () => {
             )
           }
         </GoogleMap>
+      </div>
+
+      <div className="d-flex col-2 flex-column border border-warning">
         <form>
-          <label>Enter Source</label>
+          <label className='p-2'>Enter Source</label>
           {/* <Autocomplete> */}
-            <input class="form-control" type="text" name="source" onChange={(e) => setSource(e.target.value)} />
+          <input class="form-control p-2 bg-light" type="label" name="source" onChange={(e) => setSource(e.target.value)} />
           {/* </Autocomplete> */}
           <br />
 
-          <label>Enter destination</label>
+          <label className='p-2'>Enter destination</label>
           {/* <Autocomplete> */}
-            <input class="form-control" type="text" name="destination" onChange={(e) => setDestination(e.target.value)} />
+          <input class="form-control p-2 bg-light" type="label" name="destination" onChange={(e) => setDestination(e.target.value)} />
           {/* </Autocomplete> */}
         </form>
-        <button class="btn btn-success" onClick={calculateRoute}>Get Route</button>
-        <button class="btn btn-success" onClick={clearRoute}>clear Route</button>
+        <button class="btn btn-success m-2" onClick={calculateRoute}>Get Route</button>
+        <button class="btn btn-success m-2" onClick={clearRoute}>clear Route</button>
         <div className='.g-col-6 .g-col-md-4'>
-          <label>Estimated Shortest Path </label>
-          <h3>{distance}</h3>
-          <label>Estimated Duration</label>
-          <h3>{duration}</h3>
+          <label className='p-2'>Estimated Shortest Path </label>
+          <h3 className='p-2'>{distance}</h3>
+          <label className='p-2'>Estimated Duration</label>
+          <h3 className='p-2'>{duration}</h3>
         </div>
+        <button class="btn btn-success m-2" onClick={clearRoute}>Check Available Cabs</button>
+        
       </div>
+
     </div>
   )
 }
+
+
+export default NavigationMap
