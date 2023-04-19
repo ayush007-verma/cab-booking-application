@@ -1,6 +1,6 @@
 /* global google */
 import { GoogleMap, useLoadScript, Marker, Autocomplete, DirectionsRenderer } from '@react-google-maps/api'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 
 import axios from 'axios'
@@ -18,6 +18,27 @@ export const NavigationMap = () => {
   const [directionRes, setdirectionRes] = useState(null)
   const [distance, setdistance] = useState('')
   const [duration, setduration] = useState('')
+
+  const autoCompleteRef = useRef();
+
+  const options = {
+    componentRestrictions: { country: "ng" },
+    fields: ["address_components", "geometry", "icon", "name"],
+    types: ["establishment"]
+   };
+
+  // useEffect(() => {
+  //   autoCompleteRef.current = new window.google.maps.places.Autocomplete(
+  //     source,
+  //     options
+  //    );
+
+  //   autoCompleteRef.current.addListener("place_changed", async function(){
+  //     const place = await autoCompleteRef.current.getPlace()
+  //     console.log(place)
+
+  //   })
+  // }, [])
 
   const libraries = ["places"]
 
@@ -98,15 +119,15 @@ export const NavigationMap = () => {
         </GoogleMap>
         <form>
           <label>Enter Source</label>
-          <Autocomplete>
+          {/* <Autocomplete> */}
             <input class="form-control" type="text" name="source" onChange={(e) => setSource(e.target.value)} />
-          </Autocomplete>
+          {/* </Autocomplete> */}
           <br />
 
           <label>Enter destination</label>
-          <Autocomplete>
+          {/* <Autocomplete> */}
             <input class="form-control" type="text" name="destination" onChange={(e) => setDestination(e.target.value)} />
-          </Autocomplete>
+          {/* </Autocomplete> */}
         </form>
         <button class="btn btn-success" onClick={calculateRoute}>Get Route</button>
         <button class="btn btn-success" onClick={clearRoute}>clear Route</button>
